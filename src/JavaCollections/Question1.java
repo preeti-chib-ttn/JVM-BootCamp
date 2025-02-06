@@ -5,7 +5,7 @@ import java.util.*;
 public class Question1 {
 
     public static void main(String[] args) {
-        List<Float> floatList = new ArrayList<Float>();
+        List<Float> floatList = new ArrayList<>();
 
         Scanner scanner = new Scanner(System.in);
 
