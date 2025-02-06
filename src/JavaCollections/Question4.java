@@ -4,6 +4,7 @@ use instances of these class as keys in a Map and their salary as value*/
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Scanner;
 
 class Employee{
@@ -21,12 +22,24 @@ class Employee{
     public String toString() {
         return name+" "+age+" "+designation;
     }
+
+    @Override
+    public int hashCode(){
+        return Objects.hash(name, age, designation);
+    }
+
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Employee employee = (Employee) obj;
+        return age == employee.age && name.equals(employee.name) && designation.equals(employee.designation);
+    }
 }
 public class Question4 {
 
     public static void main(String[] args) {
-
-
         Map<Employee,Double> employeeSalaryMap = new HashMap<>();
 
         Scanner scanner= new Scanner(System.in);
@@ -49,9 +62,12 @@ public class Question4 {
             scanner.nextLine();
             System.out.println("Designation:");
             designation=scanner.nextLine();
+            Employee emp = new Employee(name, age, designation);
+            if (employeeSalaryMap.containsKey(emp)) {
+                System.out.println("Employee already exists, updating salary...");
+            }
 
-
-            employeeSalaryMap.put(new Employee(name,age,designation),salary);
+            employeeSalaryMap.put(emp, salary);
         }
 
         System.out.println("Employees with Salary:");
