@@ -51,6 +51,8 @@ public class Main {
 
         Collections.sort(employeeList);
         System.out.println("\n\nAfter sorting by salary using comparator:");
+
+
         Collections.sort(employeeList, new Comparator<Employee>() {
             @Override
             public int compare(Employee employee, Employee t1) {

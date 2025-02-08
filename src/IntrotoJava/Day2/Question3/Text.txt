@@ -1,0 +1,2 @@
+This is a demo text file with random text and here every word in the text is checked.
+We will check the occurrence of the given text and return how many that word has occurred in the text.
