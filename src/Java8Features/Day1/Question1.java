@@ -11,8 +11,6 @@
  */
 
 package Java8Features.Day1;
-import static Java8Features.Day1.ConcatenateString.printString;
-
 interface  CompareNumbers{
     public boolean compareNumbers(int a, int b);
 }
@@ -46,7 +44,7 @@ public class Question1 {
                 ((IncrementNumber) (a)-> a+1 )
                         .incrementNumber(10));
         //  Concatenation of 2 String
-        printString((a,b)-> (a+b));
+        ConcatenateString.printString( (a,b)-> (a+b));
         // Convert a string to uppercase and return .
         System.out.println("Converting string to upper case: "+
                 ((ChangeCaseString)(a)-> a.toUpperCase())
