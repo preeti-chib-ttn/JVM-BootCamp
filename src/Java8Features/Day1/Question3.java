@@ -16,7 +16,7 @@ interface Parent2 {
 
 // multiple inheritance
 class  Child implements  Parent1,Parent2{
-    // implementation of demo is compulsory here
+    // implementation of functiondemo is compulsory here
     public void  demo(){
         Parent1.super.demo();
         Parent2.super.demo();

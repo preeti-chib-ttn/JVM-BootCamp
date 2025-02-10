@@ -40,7 +40,7 @@ public class Question1 {
                 +greaterNumber.compareNumbers(10,20));
 
         // Increment the number by 1 and return incremented value
-        System.out.println("The increament of 10 is: " +
+        System.out.println("The increment of 10 is: " +
                 ((IncrementNumber) (a)-> a+1 )
                         .incrementNumber(10));
         //  Concatenation of 2 String
