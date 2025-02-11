@@ -8,9 +8,7 @@ import java.util.function.*;
 public  class Question1 {
 
     public static void main(String[] args) {
-        Consumer<List<Integer>> listConsumer = (a)-> {
-            System.out.println("The list is: "+Arrays.toString(a.toArray()));
-        };
+        Consumer<List<Integer>> listConsumer = (a)-> System.out.println("The list is: "+Arrays.toString(a.toArray()));
 
         Supplier<List<Integer>> listSupplier = ()->{
             System.out.println("Changing values in the list to (1,2,3,4,5,6) ");
