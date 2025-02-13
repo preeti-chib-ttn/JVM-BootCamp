@@ -1,6 +1,4 @@
-package BeyondJava.Day1;
-
-
+package BeyondJava.Day1.Question6;
 /*Q6) You are tasked with writing a processOrderStatus
 method that takes an OrderStatus enum as input
 and returns a descriptive string based on the order status.
@@ -18,8 +16,25 @@ Your processOrderStatus method should adhere to the following rules:
  processing within a case, demonstrate the use of the yield keyword
  to return a value from the switch expression.
  */
-public class Question6 {
-    public static void main(String[] args) {
 
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(processOrderStatus(OrderStatus.PENDING));
+        System.out.println(processOrderStatus(OrderStatus.SHIPPED));
+        System.out.println(processOrderStatus(OrderStatus.REFUNDED));
+        System.out.println(processOrderStatus(OrderStatus.CANCELLED));
+    }
+
+    public static String processOrderStatus(OrderStatus status) {
+        return switch (status) {
+            case PENDING -> "Order is awaiting confirmation.";
+            case PROCESSING -> "Order is being prepared.";
+            case SHIPPED -> "Order has been dispatched.";
+            case DELIVERED -> "Order has been successfully delivered.";
+            case CANCELLED -> {
+               yield  "Order has been canceled.";
+            }
+            case REFUNDED -> {yield "Refund has been issued for the order.";}
+        };
     }
 }

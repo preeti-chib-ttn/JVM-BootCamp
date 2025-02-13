@@ -18,6 +18,5 @@ public class Question5 {
         System.out.println("stripIndent():\n" + "    Line 1\n    Line 2".stripIndent());
         System.out.println("translateEscapes(): " + "Hello\\nWorld".translateEscapes());
         System.out.println("formatted(): " + "Name: %s, Age: %d".formatted("Preeti", 23));
-
     }
 }
