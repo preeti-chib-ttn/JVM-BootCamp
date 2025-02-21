@@ -16,20 +16,16 @@ public class Main {
 
             final String filename= "[ File #"+(i+1)+" "+serviceName+" ]";
             boolean isDownloaded=false;
-            Future<Boolean> fileDownloadedStatus =executor.submit(()->{
+             executor.execute(()->{
                 System.out.println(filename +", "+Thread.currentThread().getName()+", Download Started ***");
-                Thread.sleep(300);
-                System.out.println(filename+", "+Thread.currentThread().getName()+", Download Done.");
-                return true;
+                 try {
+                     Thread.sleep(10000);
+                 } catch (InterruptedException e) {
+                     throw new RuntimeException(e);
+                 }
+                 System.out.println(filename+", "+Thread.currentThread().getName()+", Download Done.");
             });
 
-            try {
-               isDownloaded= fileDownloadedStatus.get();
-            } catch (InterruptedException | ExecutionException e) {
-                throw new RuntimeException(e);
-            }finally {
-                System.out.println(filename+" download successfully? "+isDownloaded);
-            }
         }
         executor.shutdown();
         boolean allFilesDownloaded = executor.awaitTermination(1,TimeUnit.MINUTES);
