@@ -1,20 +1,17 @@
 package MultiThreading.Day2;
 
 import java.util.Random;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
+import java.util.concurrent.*;
 
 /*
 * Q4) WAP to return a random integer value from a thread execution using Future.*/
 public class Question4 {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException, InterruptedException {
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+        Callable<Integer> getRandomInteger= ()-> new Random().nextInt();
+        Future<Integer> randomIntegerFromCallable = executor.submit(getRandomInteger);
+        System.out.println("The random integer is: "+randomIntegerFromCallable.get());
 
-        FutureTask<Integer> getRandomNumber = new FutureTask<>(()-> new Random().nextInt());
-      new Thread(getRandomNumber).start();
-        try {
-            System.out.println("Random integer is: "+getRandomNumber.get());
-        } catch (InterruptedException | ExecutionException e) {
-            throw new RuntimeException(e);
-        }
+        executor.shutdown();
     }
 }

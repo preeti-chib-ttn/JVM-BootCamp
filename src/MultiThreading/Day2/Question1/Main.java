@@ -3,6 +3,7 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
+/*Q1) WAP to show usage of Callable and demonstrate how it is different from Runnable */
 public class Main {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         // Callable Task
@@ -26,7 +27,6 @@ public class Main {
             }
             stringObject[0]= "This is not directly returned by runnable";
         });
-
 
         runnableThread.start();
         callableThread.start();
