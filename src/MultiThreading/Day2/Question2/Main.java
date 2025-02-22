@@ -6,6 +6,8 @@ public class Main {
     public static void main(String[] args) {
         OrderService orderService = new OrderService();
         PaymentService paymentService = new PaymentService();
+        System.out.println("The lock are applied in reverse in this example." +
+                "\n[ tryLock() is used to prevent deadlock ]\n");
         Thread orderServiceThread = new Thread(
                 ()-> orderService.placeOrder(paymentService));
         Thread paymentServiceThread = new Thread(
