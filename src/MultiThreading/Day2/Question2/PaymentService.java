@@ -4,32 +4,22 @@ import java.util.concurrent.locks.ReentrantLock;
 
 public class PaymentService{
     public final Lock lock = new ReentrantLock();
-    public  void completePayment(OrderService orderService){
-            if(lock.tryLock()){ // locking payment
-                try{
-                    System.out.println("Payment service has initiated by "+
-                            Thread.currentThread().getName());
-                    System.out.println("Waiting for order conformation...");
-                    Thread.sleep(3000);
+    public void completePayment(OrderService orderService) {
+        try {
+            // Pehle OrderService ka lock le rahe hain
+            orderService.lock.lock();
 
-                    if(orderService.lock.tryLock()){
-                        try{
-                            System.out.println("Order conformation received" +
-                                    ", Payment completed.");
-                            return; // exit when done
-                        }finally {
-                            orderService.lock.unlock(); // unlocking after order confirmed
-                        }
-                    }else{
-                        System.out.println("Unable to acquire lock on order service.");
-                    }
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }finally {
-                    lock.unlock(); // unlock when payment done
-                }
-            }else{
-                System.out.println("Unable to acquire lock on Payment service.");
-            }
+            System.out.println("Payment service initiated by " + Thread.currentThread().getName());
+            Thread.sleep(1000);
+            lock.lock(); // Phir PaymentService ka lock le rahe hain
+            System.out.println("Order confirmation received, Payment completed.");
+            lock.unlock();
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } finally {
+            orderService.lock.unlock();
+        }
     }
+
 }
